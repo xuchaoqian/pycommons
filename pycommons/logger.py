@@ -25,8 +25,10 @@ def __init(
             config = json.load(config_file)
             log_dir = os.path.join(root_dir, 'log')
             info_handler = config['handlers']['info_file_handler']
+            warning_handler = config['handlers']['warning_file_handler']
             error_handler = config['handlers']['error_file_handler']
             info_handler['filename'] = os.path.join(log_dir, info_handler['filename'])
+            warning_handler['filename'] = os.path.join(log_dir, warning_handler['filename'])
             error_handler['filename'] = os.path.join(log_dir, error_handler['filename'])
         logging.config.dictConfig(config)
     else:
@@ -44,3 +46,4 @@ def get_instance(name):
 if __name__ == '__main__':
     logger = get_instance(__name__)
     logger.info("hello %s", "world")
+
